@@ -63,7 +63,23 @@ class App extends Component {
 
         <div className="photo-container">
           <h2>Results</h2>
-          <ul />
+          <ul>
+            {this.state.searchedImages.map(photo => (
+              <Photo
+                image={
+                  "https://farm" +
+                  photo.farm +
+                  ".staticflickr.com/" +
+                  photo.server +
+                  "/" +
+                  photo.id +
+                  "_" +
+                  photo.secret +
+                  ".jpg"
+                }
+              />
+            ))}
+          </ul>
           <ul>
             <li className="not-found">
               <h3>No Results Found</h3>
