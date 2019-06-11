@@ -1,22 +1,39 @@
 import React, { Component } from "react";
 import "./App.css";
+import "./config.js";
 import "./index.css";
 import Photo from "./Photo";
 
 class App extends Component {
-  state = {
-    images: [
-      "https://farm5.staticflickr.com/4334/37032996241_4c16a9b530.jpg",
-      "https://farm5.staticflickr.com/4425/36337012384_ba3365621e.jpg"
-    ]
-  };
+  constructor() {
+    super();
+    this.state = {
+      searchedImages: []
+    };
+  }
+
+  componentDidMount() {
+    fetch(
+      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=02b370264fb16eaca7203bc6d043a551&tags=sunset&per_page=24&format=json&nojsoncallback=1"
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(resImages => {
+        this.setState({ searchedImages: resImages.photos.photo });
+      })
+      .catch(error => {
+        console.log("Error fetching and passing data", error);
+      });
+  }
 
   render() {
+    console.log(this.state.searchedImages);
     return (
-      <div class="container">
-        <form class="search-form">
+      <div className="container">
+        <form className="search-form">
           <input type="search" name="search" placeholder="Search" required />
-          <button type="submit" class="search-button">
+          <button type="submit" className="search-button">
             <svg
               fill="#fff"
               height="24"
@@ -30,7 +47,7 @@ class App extends Component {
           </button>
         </form>
 
-        <nav class="main-nav">
+        <nav className="main-nav">
           <ul>
             <li>
               <a href="#">Cats</a>
@@ -44,14 +61,11 @@ class App extends Component {
           </ul>
         </nav>
 
-        <div class="photo-container">
+        <div className="photo-container">
           <h2>Results</h2>
+          <ul />
           <ul>
-            <Photo image={this.state.images[0]} />
-            <Photo image={this.state.images[1]} />
-          </ul>
-          <ul>
-            <li class="not-found">
+            <li className="not-found">
               <h3>No Results Found</h3>
               <p>You search did not return any results. Please try again.</p>
             </li>
@@ -60,6 +74,8 @@ class App extends Component {
       </div>
     );
   }
+
+  getImages;
 }
 
 export default App;
