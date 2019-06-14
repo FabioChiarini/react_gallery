@@ -31,13 +31,21 @@ class App extends Component {
       });
   };
 
+  searchImages = e => {
+    console.log(e);
+    //e.preventDefault();
+  };
+
   render() {
-    console.log(this.state.searchedImages);
     return (
       <div className="container">
         <form className="search-form">
           <input type="search" name="search" placeholder="Search" required />
-          <button type="submit" className="search-button">
+          <button
+            type="submit"
+            className="search-button"
+            onClick={this.searchImages("AAA")}
+          >
             <svg
               fill="#fff"
               height="24"
@@ -87,6 +95,7 @@ class App extends Component {
                   photo.secret +
                   ".jpg"
                 }
+                key={photo.id.toString()}
               />
             ))}
           </ul>
