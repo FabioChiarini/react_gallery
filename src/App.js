@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import "./config.js";
+import apiKey from "./config.js";
 import "./index.css";
 import Photo from "./Photo";
 
@@ -12,9 +12,13 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  getImages = tag => {
     fetch(
-      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=02b370264fb16eaca7203bc6d043a551&tags=sunset&per_page=24&format=json&nojsoncallback=1"
+      "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" +
+        apiKey +
+        "&tags=" +
+        tag +
+        "&per_page=24&format=json&nojsoncallback=1"
     )
       .then(response => {
         return response.json();
@@ -25,7 +29,7 @@ class App extends Component {
       .catch(error => {
         console.log("Error fetching and passing data", error);
       });
-  }
+  };
 
   render() {
     console.log(this.state.searchedImages);
@@ -50,13 +54,19 @@ class App extends Component {
         <nav className="main-nav">
           <ul>
             <li>
-              <a href="#">Cats</a>
+              <a href="#" onClick={() => this.getImages("cat")}>
+                Cats
+              </a>
             </li>
             <li>
-              <a href="#">Dogs</a>
+              <a href="#" onClick={() => this.getImages("dog")}>
+                Dogs
+              </a>
             </li>
             <li>
-              <a href="#">Computers</a>
+              <a href="#" onClick={() => this.getImages("computer")}>
+                Computers
+              </a>
             </li>
           </ul>
         </nav>
@@ -90,8 +100,6 @@ class App extends Component {
       </div>
     );
   }
-
-  getImages;
 }
 
 export default App;
