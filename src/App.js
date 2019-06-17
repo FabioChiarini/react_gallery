@@ -13,6 +13,7 @@ class App extends Component {
     };
   }
 
+  //method to get the API images to display starting from a tag parameter
   getImages = tag => {
     fetch(
       "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" +
@@ -35,6 +36,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        {/* Adding Search form component to the page and passing the 
+        getImage function as a prop, so that it can be used 
+        in the SearchForm component */}
         <SearchForm getImages={this.getImages} />
 
         <nav className="main-nav">
@@ -60,6 +64,8 @@ class App extends Component {
         <div className="photo-container">
           <h2>Results</h2>
           <ul>
+            {/*display on the page the images obtained from the API
+            formatting the URL as requested in the documentation*/}
             {this.state.searchedImages.map(photo => (
               <Photo
                 image={

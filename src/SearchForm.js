@@ -13,8 +13,6 @@ class SearchForm extends Component {
     e.preventDefault();
     console.log(this.state.value);
     this.props.getImages(this.state.value);
-    //console.log(this.state.searchImages);
-    //this.props.tagToSearch(this.state.value);
   };
 
   render() {
