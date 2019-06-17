@@ -11,12 +11,15 @@ class SearchForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    //this.props.
+    console.log(this.state.value);
+    this.props.getImages(this.state.value);
+    //console.log(this.state.searchImages);
+    //this.props.tagToSearch(this.state.value);
   };
 
   render() {
     return (
-      <form className="search-form">
+      <form className="search-form" onSubmit={this.handleSubmit}>
         <input
           type="search"
           name="search"

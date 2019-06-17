@@ -32,16 +32,10 @@ class App extends Component {
       });
   };
 
-  searchImages = e => {
-    //console.log(e);
-    e.preventDefault();
-    //e.preventDefault();
-  };
-
   render() {
     return (
       <div className="container">
-        <SearchForm />
+        <SearchForm getImages={this.getImages} />
 
         <nav className="main-nav">
           <ul>
