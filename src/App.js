@@ -3,6 +3,7 @@ import "./App.css";
 import apiKey from "./config.js";
 import "./index.css";
 import Photo from "./Photo";
+import Nav from "./Nav";
 import SearchForm from "./SearchForm";
 
 class App extends Component {
@@ -43,25 +44,9 @@ class App extends Component {
 
 
         {/* Setting the anchor tags to their respective search tags */}
-        <nav className="main-nav">
-          <ul>
-            <li>
-              <a href="#" onClick={() => this.getImages("cat")}>
-                Cats
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => this.getImages("dog")}>
-                Dogs
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => this.getImages("computer")}>
-                Computers
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Nav getImages={this.getImages}/>
+
+
 
         <div className="photo-container">
           <h2>Results</h2>

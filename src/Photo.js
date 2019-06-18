@@ -1,5 +1,6 @@
 import React from "react";
 
+//this component is used to display a single image
 const Photo = props => {
   return (
     <li>
