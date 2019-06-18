@@ -41,6 +41,8 @@ class App extends Component {
         in the SearchForm component */}
         <SearchForm getImages={this.getImages} />
 
+
+        {/* Setting the anchor tags to their respective search tags */}
         <nav className="main-nav">
           <ul>
             <li>

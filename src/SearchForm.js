@@ -5,13 +5,14 @@ class SearchForm extends Component {
     value: ""
   };
 
+  //function to handle input change in the search bar
   handleValueChange = e => {
     this.setState({ value: e.target.value });
   };
 
+  //function that displays the selected images once the form is submitted
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.value);
     this.props.getImages(this.state.value);
   };
 
