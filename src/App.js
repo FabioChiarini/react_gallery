@@ -5,6 +5,7 @@ import "./index.css";
 import Nav from "./Nav";
 import SearchForm from "./SearchForm";
 import PhotoContainer from "./PhotoContainer";
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -36,21 +37,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        {/* Adding Search form component to the page and passing the 
+      <BrowserRouter>
+        <div className="container">
+          {/* Adding Search form component to the page and passing the 
         getImage function as a prop, so that it can be used 
         in the SearchForm component */}
-        <SearchForm getImages={this.getImages} />
+          <SearchForm getImages={this.getImages} />
 
+          {/* Adding the Nav components with his anchor tags */}
+          <Nav getImages={this.getImages} />
 
-        {/* Setting the anchor tags to their respective search tags */}
-        <Nav getImages={this.getImages}/>
-
-        <PhotoContainer searchedImages = {this.state.searchedImages}/>
-
-
-
-      </div>
+          {/*<Route path="/" component = {Comp}/> */}
+          <PhotoContainer searchedImages={this.state.searchedImages} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
