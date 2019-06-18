@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import apiKey from "./config.js";
 import "./index.css";
-import Photo from "./Photo";
 import Nav from "./Nav";
 import SearchForm from "./SearchForm";
+import PhotoContainer from "./PhotoContainer";
 
 class App extends Component {
   constructor() {
@@ -46,37 +46,10 @@ class App extends Component {
         {/* Setting the anchor tags to their respective search tags */}
         <Nav getImages={this.getImages}/>
 
+        <PhotoContainer searchedImages = {this.state.searchedImages}/>
 
 
-        <div className="photo-container">
-          <h2>Results</h2>
-          <ul>
-            {/*display on the page the images obtained from the API
-            formatting the URL as requested in the documentation*/}
-            {this.state.searchedImages.map(photo => (
-              <Photo
-                image={
-                  "https://farm" +
-                  photo.farm +
-                  ".staticflickr.com/" +
-                  photo.server +
-                  "/" +
-                  photo.id +
-                  "_" +
-                  photo.secret +
-                  ".jpg"
-                }
-                key={photo.id.toString()}
-              />
-            ))}
-          </ul>
-          <ul>
-            <li className="not-found">
-              <h3>No Results Found</h3>
-              <p>You search did not return any results. Please try again.</p>
-            </li>
-          </ul>
-        </div>
+
       </div>
     );
   }
