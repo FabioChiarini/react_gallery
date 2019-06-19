@@ -6,18 +6,18 @@ const Nav = props => {
     <nav className="main-nav">
       <ul>
         <li>
-          <Link to="/cats" onClick={() => props.getImages("cat")}>
-            Cats
+          <Link to="/cat" onClick={() => props.getImages("cat")}>
+            Cat
           </Link>
         </li>
         <li>
-          <Link to="/dogs" onClick={() => props.getImages("dog")}>
-            Dogs
+          <Link to="/dog" onClick={() => props.getImages("dog")}>
+            Dog
           </Link>
         </li>
         <li>
-          <Link to="/computers" onClick={() => props.getImages("computer")}>
-            Computers
+          <Link to="/computer" onClick={() => props.getImages("computer")}>
+            Computer
           </Link>
         </li>
       </ul>

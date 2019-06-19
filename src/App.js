@@ -31,7 +31,7 @@ class App extends Component {
       .then(resImages => {
         this.setState({
           searchedImages: resImages.photos.photo,
-          title: tag.toUpperCase() + "S"
+          title: tag.toUpperCase()
         });
       })
       .catch(error => {
@@ -43,7 +43,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route path="/images" component={PhotoContainer} />
           {/* Adding Search form component to the page and passing the 
         getImage function as a prop, so that it can be used 
         in the SearchForm component */}
