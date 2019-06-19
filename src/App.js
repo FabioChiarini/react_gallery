@@ -11,7 +11,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchedImages: []
+      searchedImages: [],
+      title: ""
     };
   }
 
@@ -28,7 +29,10 @@ class App extends Component {
         return response.json();
       })
       .then(resImages => {
-        this.setState({ searchedImages: resImages.photos.photo });
+        this.setState({
+          searchedImages: resImages.photos.photo,
+          title: tag.toUpperCase() + "S"
+        });
       })
       .catch(error => {
         console.log("Error fetching and passing data", error);
@@ -39,7 +43,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route path="/images" component = {PhotoContainer}/>
+          <Route path="/images" component={PhotoContainer} />
           {/* Adding Search form component to the page and passing the 
         getImage function as a prop, so that it can be used 
         in the SearchForm component */}
@@ -49,7 +53,10 @@ class App extends Component {
           <Nav getImages={this.getImages} />
 
           {/*<Route path="/" component = {Comp}/> */}
-          <PhotoContainer searchedImages={this.state.searchedImages} />
+          <PhotoContainer
+            searchedImages={this.state.searchedImages}
+            title={this.state.title}
+          />
         </div>
       </BrowserRouter>
     );
