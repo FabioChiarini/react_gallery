@@ -47,14 +47,16 @@ class App extends Component {
         getImage function as a prop, so that it can be used 
         in the SearchForm component */}
           <SearchForm getImages={this.getImages} />
-
           {/* Adding the Nav components with his anchor tags */}
           <Nav getImages={this.getImages} />
-
-          {/*<Route path="/" component = {Comp}/> */}
-          <PhotoContainer
-            searchedImages={this.state.searchedImages}
-            title={this.state.title}
+          <Route
+            path="/SearchResults/:searchInput"
+            render={() => (
+              <PhotoContainer
+                searchedImages={this.state.searchedImages}
+                title={this.state.title}
+              />
+            )}
           />
         </div>
       </BrowserRouter>
