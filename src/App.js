@@ -50,7 +50,7 @@ class App extends Component {
           {/* Adding the Nav components with his anchor tags */}
           <Nav getImages={this.getImages} />
           <Route
-            path="/SearchResults/:searchInput"
+            path="/SearchResults/:input"
             render={() => (
               <PhotoContainer
                 searchedImages={this.state.searchedImages}
