@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import apiKey from "./config.js";
 import "./index.css";
-import Nav from "./Nav";
-import SearchForm from "./SearchForm";
+
 import PhotoContainer from "./PhotoContainer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
+import Header from "./Header";
 
 class App extends Component {
   constructor() {
@@ -44,16 +44,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          {/* Adding Search form component to the page and passing the 
-        getImage function as a prop, so that it can be used 
-        in the SearchForm component */}
-          <SearchForm getImages={this.getImages} />
-          {/* Adding the Nav components with his anchor tags */}
-          <Nav getImages={this.getImages} />
           <Switch>
             <Route
               exact
-              path="/"
+              path=""
+              render={() => <Header getImages={this.getImages} />}
+            />
+
+            <Route
+              path="/search"
               render={() => (
                 <PhotoContainer
                   searchedImages={this.state.searchedImages}
