@@ -5,7 +5,8 @@ import "./index.css";
 import Nav from "./Nav";
 import SearchForm from "./SearchForm";
 import PhotoContainer from "./PhotoContainer";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NotFound from "./NotFound";
 
 class App extends Component {
   constructor() {
@@ -49,15 +50,19 @@ class App extends Component {
           <SearchForm getImages={this.getImages} />
           {/* Adding the Nav components with his anchor tags */}
           <Nav getImages={this.getImages} />
-          <Route
-            path="/SearchResults/:input"
-            render={() => (
-              <PhotoContainer
-                searchedImages={this.state.searchedImages}
-                title={this.state.title}
-              />
-            )}
-          />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <PhotoContainer
+                  searchedImages={this.state.searchedImages}
+                  title={this.state.title}
+                />
+              )}
+            />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
