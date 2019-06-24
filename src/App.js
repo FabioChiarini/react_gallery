@@ -47,19 +47,23 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path=""
+              path="/"
               render={() => <Header getImages={this.getImages} />}
             />
 
             <Route
-              path="/search"
+              path="/search/:images"
               render={() => (
-                <PhotoContainer
-                  searchedImages={this.state.searchedImages}
-                  title={this.state.title}
-                />
+                <div>
+                  <Header getImages={this.getImages} />
+                  <PhotoContainer
+                    searchedImages={this.state.searchedImages}
+                    title={this.state.title}
+                  />
+                </div>
               )}
             />
+
             <Route component={NotFound} />
           </Switch>
         </div>

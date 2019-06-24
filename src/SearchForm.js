@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 
 class SearchForm extends Component {
   state = {
@@ -13,9 +14,9 @@ class SearchForm extends Component {
   //function that displays the selected images once the form is submitted
   handleSubmit = e => {
     e.preventDefault();
+    let path = `/search/${this.state.value}`;
+    this.props.history.push(path);
     this.props.getImages(this.state.value);
-    let path = `/SearchResults/${this.state.value}`;
-    //this.props.history.push(path);
   };
 
   render() {
@@ -30,11 +31,7 @@ class SearchForm extends Component {
           required
         />
 
-        <button
-          type="submit"
-          className="search-button"
-          onClick={this.searchImages}
-        >
+        <button type="submit" className="search-button">
           <svg
             fill="#fff"
             height="24"
@@ -51,4 +48,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);
