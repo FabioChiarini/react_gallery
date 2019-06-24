@@ -5,6 +5,7 @@ import "./index.css";
 
 import PhotoContainer from "./PhotoContainer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router } from "react-router";
 import NotFound from "./NotFound";
 import Header from "./Header";
 
@@ -13,7 +14,8 @@ class App extends Component {
     super();
     this.state = {
       searchedImages: [],
-      title: ""
+      title: "",
+      loading_state = true
     };
   }
 
@@ -32,7 +34,8 @@ class App extends Component {
       .then(resImages => {
         this.setState({
           searchedImages: resImages.photos.photo,
-          title: tag.toUpperCase()
+          title: tag.toUpperCase(),
+          loading_state=false
         });
       })
       .catch(error => {
@@ -57,6 +60,7 @@ class App extends Component {
                 <div>
                   <Header getImages={this.getImages} />
                   <PhotoContainer
+                    history={history}
                     searchedImages={this.state.searchedImages}
                     title={this.state.title}
                   />

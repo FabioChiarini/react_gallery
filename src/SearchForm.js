@@ -15,7 +15,7 @@ class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let path = `/search/${this.state.value}`;
-    this.props.history.push(path);
+    this.props.history.push(path, this.props.getImages(this.state.value));
     this.props.getImages(this.state.value);
   };
 
