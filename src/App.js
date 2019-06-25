@@ -15,12 +15,15 @@ class App extends Component {
     this.state = {
       searchedImages: [],
       title: "",
-      loading_state = true
+      loading_state:true
     };
   }
 
   //method to get the API images to display starting from a tag parameter
   getImages = tag => {
+    this.setState({
+      loading_state:true
+    });
     fetch(
       "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" +
         apiKey +
@@ -35,7 +38,7 @@ class App extends Component {
         this.setState({
           searchedImages: resImages.photos.photo,
           title: tag.toUpperCase(),
-          loading_state=false
+          loading_state:false
         });
       })
       .catch(error => {
@@ -47,24 +50,17 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
+        <Header getImages={this.getImages} />
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => <Header getImages={this.getImages} />}
-            />
 
             <Route
               path="/search/:images"
               render={() => (
-                <div>
-                  <Header getImages={this.getImages} />
+                  (this.state.loading_state)  ? <h1>LOADING IMAGES</h1> : 
                   <PhotoContainer
-                    history={history}
                     searchedImages={this.state.searchedImages}
                     title={this.state.title}
                   />
-                </div>
               )}
             />
 
