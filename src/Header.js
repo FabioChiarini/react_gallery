@@ -1,17 +1,30 @@
 import React from "react";
-import Nav from "./Nav";
-import SearchForm from "./SearchForm";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   return (
-    <div>
-      {/* Adding Search form component to the page and passing the 
-        getImage function as a prop, so that it can be used 
-        in the SearchForm component */}
-      <SearchForm {...props} getImages={props.getImages} />
-      {/* Adding the Nav components with his anchor tags */}
-      <Nav {...props} getImages={props.getImages} />
-    </div>
+    <nav className="main-nav">
+      <ul>
+        <li>
+          <Link to="/search/cat" onClick={() => props.getImages("cat")}>
+            Cat
+          </Link>
+        </li>
+        <li>
+          <Link to="/search/dog" onClick={() => props.getImages("dog")}>
+            Dog
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/search/computer"
+            onClick={() => props.getImages("computer")}
+          >
+            Computer
+          </Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

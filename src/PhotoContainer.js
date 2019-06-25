@@ -3,7 +3,6 @@ import Photo from "./Photo";
 
 //this component is used to display the 24 images
 const PhotoContainer = props => {
-  
   if (props.searchedImages.length > 0) {
     return (
       <div className="photo-container">
@@ -28,27 +27,20 @@ const PhotoContainer = props => {
             />
           ))}
         </ul>
-        
       </div>
     );
-  }
-  else 
-  {
+  } else {
     return (
       <div className="photo-container">
-          <ul>
+        <ul>
           <li className="not-found">
             <h3>No Results Found</h3>
             <p>You search did not return any results. Please try again.</p>
           </li>
         </ul>
-
       </div>
-
-    )
-  } 
-
-
+    );
+  }
 };
 
 export default PhotoContainer;

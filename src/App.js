@@ -5,9 +5,9 @@ import "./index.css";
 
 import PhotoContainer from "./PhotoContainer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Router } from "react-router";
 import NotFound from "./NotFound";
 import Header from "./Header";
+import SearchForm from "./SearchForm";
 
 class App extends Component {
   constructor() {
@@ -15,14 +15,14 @@ class App extends Component {
     this.state = {
       searchedImages: [],
       title: "",
-      loading_state:true
+      loading_state: true
     };
   }
 
   //method to get the API images to display starting from a tag parameter
   getImages = tag => {
     this.setState({
-      loading_state:true
+      loading_state: true
     });
     fetch(
       "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=" +
@@ -38,7 +38,7 @@ class App extends Component {
         this.setState({
           searchedImages: resImages.photos.photo,
           title: tag.toUpperCase(),
-          loading_state:false
+          loading_state: false
         });
       })
       .catch(error => {
@@ -50,28 +50,33 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-
-        <Route
-          render={props =>
-            <Header
-              {...props}
-                    getImages={this.getImages}
-                  />
-                }
-              />
+          {/* Adding Search form component to the page and passing the 
+        getImage function as a prop, so that it can be used 
+        in the SearchForm component */}
+          <Route
+            path="/"
+            render={props => (
+              <SearchForm {...props} getImages={this.getImages} />
+            )}
+          />
+          <Route
+            path="/"
+            render={props => <Header getImages={this.getImages} />}
+          />
           <Switch>
             <Route
               path="/search/:images"
-              render={() => (
-                  (this.state.loading_state)  ? <h1>LOADING IMAGES</h1> : 
+              render={() =>
+                this.state.loading_state ? (
+                  <h1>LOADING IMAGES</h1>
+                ) : (
                   <PhotoContainer
                     searchedImages={this.state.searchedImages}
                     title={this.state.title}
                   />
-                  
-              )}
+                )
+              }
             />
-            
 
             <Route component={NotFound} />
           </Switch>
