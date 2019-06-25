@@ -52,7 +52,7 @@ class App extends Component {
         <div className="container">
         <Header getImages={this.getImages} />
           <Switch>
-
+            {console.log(this.state)}
             <Route
               path="/search/:images"
               render={() => (
@@ -61,8 +61,10 @@ class App extends Component {
                     searchedImages={this.state.searchedImages}
                     title={this.state.title}
                   />
+                  
               )}
             />
+            
 
             <Route component={NotFound} />
           </Switch>
