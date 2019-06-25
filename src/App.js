@@ -50,9 +50,16 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-        <Header getImages={this.getImages} />
+
+        <Route
+          render={props =>
+            <Header
+              {...props}
+                    getImages={this.getImages}
+                  />
+                }
+              />
           <Switch>
-            {console.log(this.state)}
             <Route
               path="/search/:images"
               render={() => (

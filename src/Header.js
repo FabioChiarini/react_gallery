@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import SearchForm from "./SearchForm";
 
 const Header = props => {
+  console.log(props);
   return (
     <div>
       {/* Adding Search form component to the page and passing the 
