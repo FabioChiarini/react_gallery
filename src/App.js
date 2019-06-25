@@ -3,11 +3,11 @@ import "./App.css";
 import apiKey from "./config.js";
 import "./index.css";
 
-import PhotoContainer from "./PhotoContainer";
+import PhotoContainer from "./Components/PhotoContainer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import NotFound from "./NotFound";
-import Header from "./Header";
-import SearchForm from "./SearchForm";
+import NotFound from "./Components/NotFound";
+import Header from "./Components/Header";
+import SearchForm from "./Components/SearchForm";
 
 class App extends Component {
   constructor() {
@@ -54,7 +54,6 @@ class App extends Component {
         getImage function as a prop, so that it can be used 
         in the SearchForm component */}
           <Route
-            path="/"
             render={props => (
               <SearchForm {...props} getImages={this.getImages} />
             )}
