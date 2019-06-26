@@ -16,7 +16,6 @@ class SearchForm extends Component {
     e.preventDefault();
     let path = `/search/${this.state.value}`;
     this.props.history.push(path);
-    console.log(this.props);
     this.props.getImages(this.state.value);
     e.currentTarget.reset();
   };
