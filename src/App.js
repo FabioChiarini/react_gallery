@@ -9,6 +9,9 @@ import NotFound from "./Components/NotFound";
 import Header from "./Components/Header";
 import SearchForm from "./Components/SearchForm";
 
+
+window.addEventListener('popstate', e => {    console.log(e.state)});
+
 class App extends Component {
   constructor() {
     super();
