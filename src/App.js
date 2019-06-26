@@ -10,7 +10,7 @@ import Header from "./Components/Header";
 import SearchForm from "./Components/SearchForm";
 
 
-window.addEventListener('popstate', e => {    console.log(e.state)});
+
 
 class App extends Component {
   constructor() {
@@ -21,6 +21,8 @@ class App extends Component {
       loading_state: false
     };
   }
+
+  //{window.addEventListener('popstate', e => {    console.log(e.state)})};
 
   //method to get the API images to display starting from a tag parameter
   getImages = tag => {
