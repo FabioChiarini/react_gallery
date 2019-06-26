@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
       searchedImages: [],
       title: "",
-      loading_state: true
+      loading_state: false
     };
   }
 
