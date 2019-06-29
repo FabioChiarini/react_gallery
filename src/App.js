@@ -64,6 +64,12 @@ class App extends Component {
           />
           <Switch>
             <Route
+              exact
+              path="/"
+              render={() => <h1>Search for some images!!</h1>}
+            />
+            } />
+            <Route
               path="/search/:images"
               render={() =>
                 this.state.loading_state ? (
@@ -76,7 +82,6 @@ class App extends Component {
                 )
               }
             />
-
             <Route component={NotFound} />
           </Switch>
         </div>
